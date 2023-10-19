@@ -42,7 +42,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-links-container">
                 <Link to="/">Home</Link>
-                <a href="">Timetable</a>
+                <Link to="/studenthome">Student</Link>
                 <a href="">Subjects</a>
                 <a href="">Contact</a>
                 {/* <Link to="/signup"><button className="primary-button">SignUp</button></Link>
