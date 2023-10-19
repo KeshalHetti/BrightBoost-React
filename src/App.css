@@ -318,3 +318,21 @@ nav {
   background: #eaeaea;
   color: #676767;
 }
+
+/* ======= Student Landing Page ========= */
+
+.student-boxcontainer {
+  text-align: center;
+  margin: 3.5rem 0rem;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.student-card {
+  height: 100px;
+}
