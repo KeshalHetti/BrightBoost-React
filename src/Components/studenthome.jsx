@@ -1,9 +1,7 @@
 import React from 'react';
 import BannerBackground from "../Assets/home-banner-background.png";
-import BannerImage from "../Assets/main-01.png";
-import { FiArrowRight } from "react-icons/fi";
 import { Link } from 'react-router-dom';
-import { Box, Card, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardContent, Typography, Button, CardActions } from '@mui/material';
 
 const Home = () => {
     return (
@@ -16,104 +14,91 @@ const Home = () => {
                     <h1 className="primary-heading">
                         Welcome to BrightBoost Student
                     </h1>
-                    <p className="primary-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor accumsan ante eu accumsan.
-                    </p>
-                    <div>
-                        {/* Start of Card 01 */}
-                        <Box width='300px'>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant='h5' component='div'>
-                                        Profile
-                                    </Typography>
-                                    {/* <Typography gutterBottom variant='h5' component='div'>
-                                    Navigate to view the session Timetable.
-                                </Typography> */}
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        {/* End of Card 01 */}
+                </div>
+            </div>
 
-                        {/* Start of Card 02 */}
-                        <Box width='300px'>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant='h5' component='div'>
-                                        Timetable
-                                    </Typography>
-                                    {/* <Typography gutterBottom variant='h5' component='div'>
-                                    Navigate to view the session Timetable.
-                                </Typography> */}
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        {/* End of Card 02 */}
+            <div className='student-boxcontainer'>
+                {/* Create a grid for the content */}
+                <div className="student-grid">
+                    {/* Start of Card 01 */}
+                    <Box>
+                        <Card className='student-card'>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Profile
+                                </Typography>
+                                <CardActions>
+                                    <Button size="small">View Page</Button>
+                                </CardActions>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 01 */}
 
-                        {/* Start of Card 03 */}
-                        <Box width='300px'>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant='h5' component='div'>
-                                        Ask a Question
-                                    </Typography>
-                                    {/* <Typography gutterBottom variant='h5' component='div'>
-                                    Navigate to view the session Timetable.
-                                </Typography> */}
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        {/* End of Card 03 */}
+                    {/* Start of Card 02 */}
+                    <Box>
+                        <Card>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Timetable
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 02 */}
 
-                        {/* Start of Card 04 */}
-                        <Box width='300px'>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant='h5' component='div'>
-                                        Feedback & Survey
-                                    </Typography>
-                                    {/* <Typography gutterBottom variant='h5' component='div'>
-                                    Navigate to view the session Timetable.
-                                </Typography> */}
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        {/* End of Card 04 */}
+                    {/* Start of Card 03 */}
+                    <Box>
+                        <Card>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Ask a Question
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 03 */}
 
-                        {/* Start of Card 05 */}
-                        <Box width='300px'>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant='h5' component='div'>
-                                        Notifications
-                                    </Typography>
-                                    {/* <Typography gutterBottom variant='h5' component='div'>
-                                    Navigate to view the session Timetable.
-                                </Typography> */}
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        {/* End of Card 05 */}
+                    {/* Start of Card 04 */}
+                    <Box>
+                        <Card>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Feedback & Survey
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 04 */}
 
-                        {/* Start of Card 06 */}
-                        <Box width='300px'>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant='h5' component='div'>
-                                        Attendance
-                                    </Typography>
-                                    {/* <Typography gutterBottom variant='h5' component='div'>
-                                    Navigate to view the session Timetable.
-                                </Typography> */}
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        {/* End of Card 06 */}
-                    </div>
+                    {/* Start of Card 05 */}
+                    <Box>
+                        <Card>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Notifications
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 05 */}
+
+                    {/* Start of Card 06 */}
+                    <Box>
+                        <Card>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Attendance
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 06 */}
                 </div>
             </div>
         </div>
+
     )
 }
 
-export default Home
+export default Home;
