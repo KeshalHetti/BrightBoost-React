@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './Components/navbar';
 import Home from './Components/home';
 import SignupForm from './Components/signup';
+import StudentHome from './Components/studenthome';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route path='/studenthome' element={<StudentHome />} />
       </Routes>
     </div>
   );
