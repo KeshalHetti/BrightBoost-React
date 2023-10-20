@@ -13,6 +13,15 @@ const LoginSignup = () => {
                 {action === "Login" ? <div></div> : <div className='input'>
                     <input type='text' placeholder='Name' />
                 </div>}
+                {action === "Login" ? <div></div> : <div className='input'>
+                    <input type='text' placeholder='Age' />
+                </div>}
+                {action === "Login" ? <div></div> : <div className='input'>
+                    <input type='text' placeholder='Gender' />
+                </div>}
+                {action === "Login" ? <div></div> : <div className='input'>
+                    <input type='text' placeholder='Contact Number' />
+                </div>}
                 <div className='input'>
                     <input type='email' placeholder='Example@gmail.com' />
                 </div>
