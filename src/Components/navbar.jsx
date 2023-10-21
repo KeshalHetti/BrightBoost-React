@@ -43,8 +43,7 @@ const Navbar = () => {
             <div className="navbar-links-container">
                 <Link to="/">Home</Link>
                 <Link to="/studenthome">Student</Link>
-                <a href="">Subjects</a>
-                <a href="">Contact</a>
+                <Link to="/lecturehome">Lecture</Link>
                 {/* <Link to="/signup"><button className="primary-button">SignUp</button></Link>
                 <button className="primary-button">Login</button> */}
             </div>
