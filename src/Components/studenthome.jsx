@@ -37,7 +37,7 @@ const Home = () => {
 
                     {/* Start of Card 02 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Timetable
@@ -49,7 +49,7 @@ const Home = () => {
 
                     {/* Start of Card 03 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Ask a Question
@@ -61,7 +61,7 @@ const Home = () => {
 
                     {/* Start of Card 04 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Feedback & Survey
@@ -73,7 +73,7 @@ const Home = () => {
 
                     {/* Start of Card 05 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Notifications
@@ -85,7 +85,7 @@ const Home = () => {
 
                     {/* Start of Card 06 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Attendance
