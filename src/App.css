@@ -325,15 +325,19 @@ nav {
   text-align: center;
   margin: 3.5rem 0rem;
   position: relative;
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
 .student-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 16px;
+  gap: 10px;
 }
 
 .student-card {
-  height: 100px;
+  height: 120px;
+  padding: 15px 5px 15px 5px;
+  border-radius: 25px !important;
 }
