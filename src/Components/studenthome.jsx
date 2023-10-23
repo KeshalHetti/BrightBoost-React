@@ -42,6 +42,9 @@ const Home = () => {
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Timetable
                                 </Typography>
+                                <CardActions>
+                                    <Button size="small">View Page</Button>
+                                </CardActions>
                             </CardContent>
                         </Card>
                     </Box>
@@ -54,6 +57,9 @@ const Home = () => {
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Ask a Question
                                 </Typography>
+                                <CardActions>
+                                    <Button size="small">View Page</Button>
+                                </CardActions>
                             </CardContent>
                         </Card>
                     </Box>
@@ -66,6 +72,9 @@ const Home = () => {
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Attendance
                                 </Typography>
+                                <CardActions>
+                                    <Button size="small">View Page</Button>
+                                </CardActions>
                             </CardContent>
                         </Card>
                     </Box>

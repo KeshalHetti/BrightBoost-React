@@ -12,7 +12,7 @@ const Home = () => {
                 </div>
                 <div className="home-text-section">
                     <h1 className="primary-heading">
-                        Welcome to BrightBoost Lecture
+                        Welcome to BrightBoost Admin
                     </h1>
                 </div>
             </div>
@@ -25,7 +25,7 @@ const Home = () => {
                         <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
-                                    Profile
+                                    Student Attendance
                                 </Typography>
                                 <CardActions>
                                     <Button size="small">View Page</Button>
@@ -42,6 +42,9 @@ const Home = () => {
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Answer the Question
                                 </Typography>
+                                <CardActions>
+                                    <Button size="small">View Page</Button>
+                                </CardActions>
                             </CardContent>
                         </Card>
                     </Box>
@@ -54,6 +57,9 @@ const Home = () => {
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Record Student Attendence
                                 </Typography>
+                                <CardActions>
+                                    <Button size="small">View Page</Button>
+                                </CardActions>
                             </CardContent>
                         </Card>
                     </Box>
