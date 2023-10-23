@@ -6,6 +6,7 @@ import Home from './Components/home';
 import SignupForm from './Components/signup';
 import StudentHome from './Components/studenthome';
 import LectureHome from './Components/lecturehome';
+import AdminHome from './Components/adminhome';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path='/studenthome' element={<StudentHome />} />
         <Route path='/lecturehome' element={<LectureHome />} />
+        <Route path='/adminhome' element={<AdminHome />} />
       </Routes>
     </div>
   );
