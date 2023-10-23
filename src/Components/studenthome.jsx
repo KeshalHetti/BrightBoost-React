@@ -64,36 +64,12 @@ const Home = () => {
                         <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
-                                    Feedback & Survey
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                    {/* End of Card 04 */}
-
-                    {/* Start of Card 05 */}
-                    <Box>
-                        <Card className='student-card'>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
-                                    Notifications
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                    {/* End of Card 05 */}
-
-                    {/* Start of Card 06 */}
-                    <Box>
-                        <Card className='student-card'>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
                                     Attendance
                                 </Typography>
                             </CardContent>
                         </Card>
                     </Box>
-                    {/* End of Card 06 */}
+                    {/* End of Card 04 */}
                 </div>
             </div>
         </div>
