@@ -37,7 +37,7 @@ const Home = () => {
 
                     {/* Start of Card 02 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Answer the Question
@@ -49,7 +49,7 @@ const Home = () => {
 
                     {/* Start of Card 03 */}
                     <Box>
-                        <Card>
+                        <Card className='student-card'>
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     Record Student Attendence
@@ -58,18 +58,6 @@ const Home = () => {
                         </Card>
                     </Box>
                     {/* End of Card 03 */}
-
-                    {/* Start of Card 04 */}
-                    <Box>
-                        <Card>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
-                                    Notifications
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                    {/* End of Card 04 */}
                 </div>
             </div>
         </div>
