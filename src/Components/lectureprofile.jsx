@@ -1,4 +1,5 @@
 import * as React from 'react';
+import BannerBackground from "../Assets/home-banner-background.png";
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
@@ -61,7 +62,19 @@ export default function SimpleDialogDemo() {
   };
 
   return (
-    <div>
+
+    <div className="home-container">
+
+      <div className="home-banner-container">
+        <div className="home-bannerImage-container">
+          <img src={BannerBackground} alt="" />
+        </div>
+        <div className="home-text-section">
+          <h1 className="primary-heading">
+            BrightBoost Lecture Profile
+          </h1>
+        </div>
+      </div>
       <Button variant="outlined" onClick={handleClickOpen}>
         View Profile
       </Button>
