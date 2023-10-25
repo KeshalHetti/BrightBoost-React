@@ -28,7 +28,7 @@ const Home = () => {
                                     Profile
                                 </Typography>
                                 <CardActions>
-                                    <Button size="small">View Page</Button>
+                                    <Link to="/studentprofile"><Button size="small">View Page</Button></Link>
                                 </CardActions>
                             </CardContent>
                         </Card>
@@ -58,7 +58,7 @@ const Home = () => {
                                     Ask a Question
                                 </Typography>
                                 <CardActions>
-                                    <Button size="small">View Page</Button>
+                                    <Link to="/studentquestion"><Button size="small">View Page</Button></Link>
                                 </CardActions>
                             </CardContent>
                         </Card>

@@ -28,7 +28,7 @@ const Home = () => {
                                     Profile
                                 </Typography>
                                 <CardActions>
-                                    <Button size="small">View Page</Button>
+                                    <Link to="/lectureprofile"><Button size="small">View Page</Button></Link>
                                 </CardActions>
                             </CardContent>
                         </Card>
@@ -43,7 +43,7 @@ const Home = () => {
                                     Answer the Question
                                 </Typography>
                                 <CardActions>
-                                    <Button size="small">View Page</Button>
+                                    <Link to="/lectureanswer"><Button size="small">View Page</Button></Link>
                                 </CardActions>
                             </CardContent>
                         </Card>
