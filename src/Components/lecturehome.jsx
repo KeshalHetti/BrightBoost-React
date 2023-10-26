@@ -64,6 +64,20 @@ const Home = () => {
                         </Card>
                     </Box>
                     {/* End of Card 03 */}
+                    {/* Start of Card 04 */}
+                    <Box>
+                        <Card className='student-card'>
+                            <CardContent>
+                                <Typography gutterBottom variant='h5' component='div'>
+                                    Timetable
+                                </Typography>
+                                <CardActions>
+                                    <Link to="/tutorschedule"><Button size="small">View Page</Button></Link>
+                                </CardActions>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                    {/* End of Card 04 */}
                 </div>
             </div>
         </div>
