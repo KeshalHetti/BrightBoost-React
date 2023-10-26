@@ -10,7 +10,11 @@ import AdminHome from './Components/adminhome';
 import LectureProfile from './Components/lectureprofile';
 import LectureAnswer from './Components/lectureanswer';
 import StudentProfile from './Components/studentprofile';
-import StudentQuestion from './Components/studentquestion';
+import StudentQuestion from './Components/stquestion';
+/* import StudentAttend from './Components/studentattend';
+import RecordAttend from './Components/recordattend'; */
+import STimeTable from './Components/stimetable';
+import TutorSchedule from './Components/tutorschedule';
 
 function App() {
   return (
@@ -25,7 +29,11 @@ function App() {
         <Route path='/lectureprofile' element={<LectureProfile />} />
         <Route path='/lectureanswer' element={<LectureAnswer />} />
         <Route path='/studentprofile' element={<StudentProfile />} />
-        <Route path='/studentquestion' element={<StudentQuestion />} />
+        <Route path='/stquestion' element={<StudentQuestion />} />
+        {/* <Route path='/studentattend' element={<StudentAttend />} />
+        <Route path='/recordattend' element={<RecordAttend />} /> */}
+        <Route path='/stimetable' element={<STimeTable />} />
+        <Route path='/tutorschedule' element={<TutorSchedule />} />
       </Routes>
     </div>
   );
