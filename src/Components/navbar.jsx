@@ -45,6 +45,7 @@ const Navbar = () => {
                 <Link to="/studenthome">Student</Link>
                 <Link to="/lecturehome">Lecture</Link>
                 <Link to='/adminhome'>Admin</Link>
+                <Link to='/'>Logout</Link>
                 {/* <Link to="/signup"><button className="primary-button">SignUp</button></Link>
                 <button className="primary-button">Login</button> */}
             </div>
