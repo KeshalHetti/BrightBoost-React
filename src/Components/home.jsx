@@ -21,7 +21,7 @@ const Home = () => {
                     <div>
                         <Link to="/signup">
                             <button className="secondary-button">
-                                SignUp & Login<FiArrowRight />{" "}
+                                Login<FiArrowRight />{" "}
                             </button>
                         </Link>
                     </div>
