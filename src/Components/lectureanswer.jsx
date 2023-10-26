@@ -40,7 +40,7 @@ export default function QuestionPage() {
         </div>
         <div className="home-text-section">
           <h1 className="primary-heading">
-            BrightBoost Lecture Profile
+            BrightBoost Lecture
           </h1>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default function QuestionPage() {
         <Card className="lecturer-card">
           <CardContent>
             <Typography gutterBottom variant='h4' component='div'>
-              Ask a Question
+              Answer a Question
             </Typography>
             <Box
               component="form"
