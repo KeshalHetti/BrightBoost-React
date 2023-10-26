@@ -43,7 +43,7 @@ const Home = () => {
                                     Timetable
                                 </Typography>
                                 <CardActions>
-                                    <Button size="small">View Page</Button>
+                                    <Link to="/stimetable"><Button size="small">View Page</Button></Link>
                                 </CardActions>
                             </CardContent>
                         </Card>
