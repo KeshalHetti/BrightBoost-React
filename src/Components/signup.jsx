@@ -1,41 +1,27 @@
 import React from 'react';
-import { useState } from 'react';
 
-const LoginSignup = () => {
-    const [action, setAction] = useState("Sign Up");
+const Login = () => {
     return (
-        <div className='loginsignup-container'>
-            <div className='loginsignup-header'>
-                <div className='loginsignup-text'>{action}</div>
-                <div className='loginsignup-underline'></div>
-            </div>
-            <div className='inputs'>
-                {action === "Login" ? <div></div> : <div className='input'>
-                    <input type='text' placeholder='Name' />
-                </div>}
-                {action === "Login" ? <div></div> : <div className='input'>
-                    <input type='text' placeholder='Age' />
-                </div>}
-                {action === "Login" ? <div></div> : <div className='input'>
-                    <input type='text' placeholder='Gender' />
-                </div>}
-                {action === "Login" ? <div></div> : <div className='input'>
-                    <input type='text' placeholder='Contact Number' />
-                </div>}
-                <div className='input'>
-                    <input type='email' placeholder='Example@gmail.com' />
+        <div className='login-boxcontainer'>
+            <div className='login-container'>
+                <div className='login-header'>
+                    <div className='login-text'>Login</div>
+                    <div className='login-underline'></div>
                 </div>
-
-                <div className='input'>
-                    <input type='password' placeholder='Password' />
+                <div className='inputs'>
+                    <div className='input'>
+                        <input type='email' placeholder='Example@gmail.com' />
+                    </div>
+                    <div className='input'>
+                        <input type='password' placeholder='Password' />
+                    </div>
                 </div>
-            </div>
-            <div className="submit-contianer">
-                <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>Sign Up</div>
-                <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => { setAction("Login") }}>Login</div>
+                <div className="submit-container">
+                    <div className="submit">Login</div>
+                </div>
             </div>
         </div>
     );
 };
 
-export default LoginSignup
+export default Login;
