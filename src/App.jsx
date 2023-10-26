@@ -15,6 +15,7 @@ import StudentQuestion from './Components/stquestion';
 import RecordAttend from './Components/recordattend'; */
 import STimeTable from './Components/stimetable';
 import TutorSchedule from './Components/tutorschedule';
+import StudentAttendance from './Components/StudentAttendance';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path='/recordattend' element={<RecordAttend />} /> */}
         <Route path='/stimetable' element={<STimeTable />} />
         <Route path='/tutorschedule' element={<TutorSchedule />} />
+        <Route path='/StudentAttendance' element={<StudentAttendance />} />
       </Routes>
     </div>
   );

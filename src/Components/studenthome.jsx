@@ -18,9 +18,7 @@ const Home = () => {
             </div>
 
             <div className='student-boxcontainer'>
-                {/* Create a grid for the content */}
                 <div className="student-grid">
-                    {/* Start of Card 01 */}
                     <Box>
                         <Card className='student-card'>
                             <CardContent>
@@ -33,9 +31,6 @@ const Home = () => {
                             </CardContent>
                         </Card>
                     </Box>
-                    {/* End of Card 01 */}
-
-                    {/* Start of Card 02 */}
                     <Box>
                         <Card className='student-card'>
                             <CardContent>
@@ -48,9 +43,7 @@ const Home = () => {
                             </CardContent>
                         </Card>
                     </Box>
-                    {/* End of Card 02 */}
 
-                    {/* Start of Card 03 */}
                     <Box>
                         <Card className='student-card'>
                             <CardContent>
@@ -58,14 +51,12 @@ const Home = () => {
                                     Ask a Question
                                 </Typography>
                                 <CardActions>
-                                    <Link to="/studentquestion"><Button size="small">View Page</Button></Link>
+                                    <Link to="/stquestion"><Button size="small">View Page</Button></Link>
                                 </CardActions>
                             </CardContent>
                         </Card>
                     </Box>
-                    {/* End of Card 03 */}
 
-                    {/* Start of Card 04 */}
                     <Box>
                         <Card className='student-card'>
                             <CardContent>
@@ -78,7 +69,6 @@ const Home = () => {
                             </CardContent>
                         </Card>
                     </Box>
-                    {/* End of Card 04 */}
                 </div>
             </div>
         </div>

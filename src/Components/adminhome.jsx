@@ -1,74 +1,131 @@
-import React from 'react';
-import BannerBackground from "../Assets/home-banner-background.png";
-import { Link } from 'react-router-dom';
-import { Box, Card, CardContent, Typography, Button, CardActions } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Pie } from 'react-chartjs-2';
+import { Container, Typography, List, ListItem, Grid } from '@mui/material';
+import { db } from '../config/firebase';
+import { Chart, ArcElement } from 'chart.js';
+import { collection, getDocs, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 
-const Home = () => {
+const AdminAndResponseTimeCharts = () => {
+    Chart.register(ArcElement);
+
+    const [userData, setUserData] = useState([]);
+    const [responseTimeData, setResponseTimeData] = useState([]);
+    useEffect(() => {
+        const q = query(
+            collection(db, "users"), 
+            orderBy("logins", "desc"),
+            limit(5)
+        );
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const data = snapshot.docs.map(doc => ({
+                email: doc.data().email,
+                logins: doc.data().logins
+            }));
+            setUserData(data);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const qnaCollection = collection(db, 'qna');
+            const qnaSnapshot = await getDocs(qnaCollection);
+            const responseTimes = {};
+
+            qnaSnapshot.forEach(doc => {
+                const email = doc.data().emailanswered;
+                const responseTime = doc.data().timetaken;
+
+                if (!responseTimes[email]) {
+                    responseTimes[email] = { total: 0, count: 0 };
+                }
+                responseTimes[email].total += responseTime;
+                responseTimes[email].count += 1;
+            });
+
+            const averages = Object.keys(responseTimes).map(email => ({
+                email,
+                average: responseTimes[email].total / responseTimes[email].count
+            })).sort((a, b) => a.average - b.average).slice(0, 5);
+
+            setResponseTimeData(averages);
+        };
+
+        fetchData();
+    }, []);
+
+    const loginData = {
+        labels: userData.map(user => user.email),
+        datasets: [{
+            data: userData.map(user => user.logins),
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+        }]
+    };
+
+    const chartData = {
+        labels: responseTimeData.map(item => item.email),
+        datasets: [{
+            data: responseTimeData.map(item => item.average),
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+        }]
+    };
+
     return (
-        <div className="home-container">
-            <div className="home-banner-container">
-                <div className="home-bannerImage-container">
-                    <img src={BannerBackground} alt="" />
-                </div>
-                <div className="home-text-section">
-                    <h1 className="primary-heading">
-                        Welcome to BrightBoost Admin
-                    </h1>
-                </div>
-            </div>
+        <Container>
+            <Grid container spacing={4}>
+                <Grid item xs={6}>
+                    <Typography variant="h4" gutterBottom>
+                        Top 5 Most Logged-In Users
+                    </Typography>
+                    <Pie data={loginData} />
+                    <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
+                        Users:
+                    </Typography>
+                    <List>
+                        {userData.map((user, index) => (
+                            <ListItem key={user.email}>
+                                <div style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    backgroundColor: loginData.datasets[0].backgroundColor[index],
+                                    marginRight: '10px',
+                                    display: 'inline-block'
+                                }}>
+                                </div>
+                                {user.email} - {user.logins} logins
+                            </ListItem>
+                        ))}
+                    </List>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="h4" gutterBottom>
+                        Top 5 Lecturers with Best Response Time
+                    </Typography>
+                    <Pie data={chartData} />
+                    <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
+                        Lecturers:
+                    </Typography>
+                    <List>
+                        {responseTimeData.map(item => (
+                            <ListItem key={item.email}>
+                                <div style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    backgroundColor: chartData.datasets[0].backgroundColor[responseTimeData.indexOf(item)],
+                                    marginRight: '10px',
+                                    display: 'inline-block'
+                                }}>
+                                </div>
+                                {item.email} - Average Response Time: {Math.floor((item.average / 1000) / 60)} mins
+                            </ListItem>
+                        ))}
+                    </List>
+                </Grid>
+            </Grid>
+        </Container>
+    );
+};
 
-            <div className='student-boxcontainer'>
-                {/* Create a grid for the content */}
-                <div className="student-grid">
-                    {/* Start of Card 01 */}
-                    <Box>
-                        <Card className='student-card'>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
-                                    Student Attendance
-                                </Typography>
-                                <CardActions>
-                                    <Button size="small">View Page</Button>
-                                </CardActions>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                    {/* End of Card 01 */}
-
-                    {/* Start of Card 02 */}
-                    <Box>
-                        <Card className='student-card'>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
-                                    Answer the Question
-                                </Typography>
-                                <CardActions>
-                                    <Button size="small">View Page</Button>
-                                </CardActions>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                    {/* End of Card 02*/}
-
-                    {/* Start of Card 03 */}
-                    <Box>
-                        <Card className='student-card'>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
-                                    Record Student Attendence
-                                </Typography>
-                                <CardActions>
-                                    <Button size="small">View Page</Button>
-                                </CardActions>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                    {/* End of Card 03 */}
-                </div>
-            </div>
-        </div>
-
-    )
-}
-
-export default Home;
+export default AdminAndResponseTimeCharts;

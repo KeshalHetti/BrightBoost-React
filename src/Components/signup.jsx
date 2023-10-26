@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from '../config/firebase.js';
+import { auth, db } from '../config/firebase.js';
 import {
     signInWithEmailAndPassword,
+    signOut,
 } from "firebase/auth";
+import { collection, where, getDocs, updateDoc, doc, addDoc, query } from "firebase/firestore";
+import { useNavigate  } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
@@ -13,14 +17,40 @@ const Login = () => {
     const signIn = async () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            const usersQuery = query(collection(db, 'users'), where('email', '==', email));
+            const querySnapshot = await getDocs(usersQuery);
+        if (!querySnapshot.empty) {
+            const userDoc = querySnapshot.docs[0];
+            const userData = userDoc.data();
+            let currentLogins = userData.logins;
+
+            if (typeof currentLogins !== "number") {
+                currentLogins = Number(currentLogins);
+                if (isNaN(currentLogins)) {
+                    currentLogins = 0;
+                }
+            }
+
+
+            await updateDoc(doc(db, 'users', userDoc.id), {
+                logins: currentLogins + 1
+            });
+        } else {
+            await addDoc(collection(db, 'users'), {
+                email: email,
+                logins: 1
+            });
+        }
             setSuccessMessage("Sign-in successful!");
             setErrorMessage("");
+            navigate('/');
         } catch (err) {
             setSuccessMessage("");
             setErrorMessage("Invalid Credentials. Please Try Again!");
             console.error(err);
         }
     };
+    
 
     return (
         <div className='login-boxcontainer'>

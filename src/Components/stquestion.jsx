@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { auth, db } from '../config/firebase'; // Ensure the path to your firebase configuration is correct
+import { collection, addDoc, getDoc, doc, where, query, getDocs } from 'firebase/firestore';
 import BannerBackground from "../Assets/home-banner-background.png";
 import { Box, Card, CardContent, Typography, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -8,67 +10,86 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function QuestionPage() {
-  const [name, setName] = useState('');
   const [subject, setSubject] = useState('');
   const [question, setQuestion] = useState('');
+  const [isStudent, setIsStudent] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [answers, setAnswers] = useState([]);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
 
-  const handleSubjectChange = (event) => {
-    setSubject(event.target.value);
-  };
+  useEffect(() => {
+    const fetchAnswers = async () => {
+        if (!auth.currentUser) {
+            console.error("User not logged in.");
+            return;
+        }
+        const userEmail = auth.currentUser.email;
+        const qnaSnapshot = await getDocs(query(collection(db, 'qna'), where('emailasked', '==', userEmail)));
+        setAnswers(qnaSnapshot.docs.map(doc => doc.data()));
+    }
 
-  const handleQuestionChange = (event) => {
-    setQuestion(event.target.value);
-  };
+    fetchAnswers();
+  }, []);
 
-  const handleQuestionSubmit = () => {
-    // Implement your logic to submit the question here
-    console.log('Name:', name);
-    console.log('Subject:', subject);
-    console.log('Question:', question);
-  };
+  const handleQuestionSubmit = async () => {
+    if (!auth.currentUser) {
+        console.error("User not logged in.");
+        return;
+    }
 
-  return (
-    <div className="home-container">
+    try {
+        const userEmail = auth.currentUser.email;
+        const userSnapshot = await getDocs(query(collection(db, 'users'), where('email', '==', userEmail)));
 
+        if (userSnapshot.empty) {
+            console.error(`No user data found for email: ${userEmail}`);
+            return;
+        }
+
+        const userDoc = userSnapshot.docs[0];
+        const userData = userDoc.data();
+
+        if (userData.role !== 'student') {
+            console.error('Only students can submit questions.');
+            return;
+        }
+
+        setUserName(userEmail);
+
+        const timestampAsked = Date.now();
+        await addDoc(collection(db, 'qna'), {
+            emailasked: userEmail,
+            question: question,
+            timestampasked: timestampAsked,
+            timestampreplied: null,
+            timetaken: 0,
+            subject: subject
+        });
+    } catch (error) {
+        console.error("Error fetching user role:", error);
+    }
+};
+
+
+
+return (
+  <div className="home-container">
       <div className="home-banner-container">
-        <div className="home-bannerImage-container">
-          <img src={BannerBackground} alt="" />
-        </div>
-        <div className="home-text-section">
-          <h1 className="primary-heading">
-            BrightBoost Lecture Profile
-          </h1>
-        </div>
+          <div className="home-bannerImage-container">
+              <img src={BannerBackground} alt="" />
+          </div>
+          <div className="home-text-section">
+              <h1 className="primary-heading">BrightBoost Lecture Profile</h1>
+          </div>
       </div>
-
       <div className='lecturer-boxcontainer'>
-        <Card className="lecturer-card">
-          <CardContent>
-            <Typography gutterBottom variant='h4' component='div'>
-              Ask a question
-            </Typography>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                id="standard-basic"
-                label="Name of the student"
-                variant="standard"
-                value={name}
-                onChange={handleNameChange}
-              />
-            </Box>
+          <Card className="lecturer-card">
+              <CardContent>
+                  <Typography gutterBottom variant='h4' component='div'>
+                      Ask a question
+                  </Typography>
 
-            <Box sx={{
+                  <Box sx={{
               '& > :not(style)': { m: 1, width: '70ch' },
             }}>
               <FormControl fullWidth>
@@ -77,7 +98,7 @@ export default function QuestionPage() {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={subject}
-                  onChange={handleSubjectChange}
+                  onChange={e => setSubject(e.target.value)}
                 >
                   <MenuItem value="English">English</MenuItem>
                   <MenuItem value="Maths">Maths</MenuItem>
@@ -99,16 +120,31 @@ export default function QuestionPage() {
                 label="Type your question here"
                 variant="outlined"
                 value={question}
-                onChange={handleQuestionChange}
+                onChange={e => setQuestion(e.target.value)}
               />
             </Box>
 
             <Button variant="contained" onClick={handleQuestionSubmit}>
               Submit Question
             </Button>
-          </CardContent>
-        </Card>
+              </CardContent>
+          </Card>
+          {answers.map((answerData, index) => (
+          <Card key={index}>
+              <CardContent>
+                  <Typography variant="h6">
+                      Question: {answerData.question}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                      Answer: {answerData.answer || 'Awaiting answer...'}
+                  </Typography>
+                  <Typography variant="subtitle2">
+                      Answered by: {answerData.emailanswered || 'Not answered yet'}
+                  </Typography>
+              </CardContent>
+          </Card>
+      ))}
       </div>
-    </div>
-  );
+  </div>
+);
 }
