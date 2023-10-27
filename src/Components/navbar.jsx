@@ -15,14 +15,14 @@ import { collection, addDoc, getDoc, doc, where, query, getDocs } from 'firebase
 
 
 const Navbar = () => {
-    var user = auth.currentUser;
 
     const [openMenu, setOpenMenu] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [isStudent, setIsStudent] = useState(false);
-    const [isLecturer, setIsLecturer] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [userRole, setUserRole] = useState("");
+    const [authLoading, setAuthLoading] = useState(true);
+
+
     const navigate = useNavigate();
 
     const menuOptions = [
@@ -73,17 +73,10 @@ const Navbar = () => {
                 const userDoc = userSnapshot.docs[0];
                 const userData = userDoc.data();
     
-                if (userData.role == 'student') {
-                    setIsStudent(true)
+                if (userData.role) {
+                    setUserRole(userData.role);
                 }
-
-                if (userData.role == 'lecturer') {
-                    setIsLecturer(true)
-                }
-
-                if (userData.role == 'admin') {
-                    setIsAdmin(true)
-                }
+                
             } catch (error) {
                 console.error("Error fetching user role:", error);
             }
@@ -99,10 +92,10 @@ const Navbar = () => {
             </div>
             <div className="navbar-links-container">
                 <Link to="/">Home</Link>
-                {user && isStudent && <Link to="/studenthome">Student</Link>}
-                {user && isLecturer && <Link to="/lecturehome">Lecture</Link>}
-                {user && isAdmin && <Link to="/adminhome">Admin</Link>}
-                {user ? <Link onClick={signout}>Logout</Link> :<Link to='/signup'>Log In</Link>}
+                {auth.currentUser && userRole === "student" && <Link to="/studenthome">Student</Link>}
+                {auth.currentUser && userRole === "lecturer" && <Link to="/lecturehome">Lecture</Link>}
+                {auth.currentUser && userRole === "admin" && <Link to="/adminhome">Admin</Link>}
+                {auth.currentUser ? <Link onClick={signout}>Logout</Link> :<Link to='/signup'>Log In</Link>}
             </div>
 
             <div className='navbar-menu-container'>
