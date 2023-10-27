@@ -96,7 +96,7 @@ function SimpleDialog(props) {
           </ListItemAvatar>
           <ListItemText
             primary={user.name}
-            secondary={`Email: ${user.email}, Age: ${user.age}, Gender: ${user.gender}, Phone: ${user.contact}, Address: ${user.address}`}
+            secondary={`Email: ${user.email}, Age: ${user.age}, Gender: ${user.gender}, Phone: ${user.contact}`}
           />
         </ListItem>
       </List>
