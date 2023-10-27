@@ -15,6 +15,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
 import { blue } from '@mui/material/colors';
+import { Box, Card, CardContent } from '@mui/material';
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = useState(false);
@@ -56,10 +57,20 @@ export default function SimpleDialogDemo() {
           </h1>
         </div>
       </div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        View Profile
-      </Button>
-      <SimpleDialog user={user} open={open} onClose={handleClose} />
+      <div className='student-boxcontainer'>
+        <div className="student-grid">
+          <Box>
+            <Card className='student-card'>
+              <CardContent>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                  View Profile
+                </Button>
+                <SimpleDialog user={user} open={open} onClose={handleClose} />
+              </CardContent>
+            </Card>
+          </Box>
+        </div>
+      </div>
     </div>
   );
 }
@@ -83,10 +94,19 @@ function SimpleDialog(props) {
               <PersonIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText
-            primary={user.name}
-            secondary={`Email: ${user.email}, Age: ${user.age}, Gender: ${user.gender}, Phone: ${user.contact}`}
-          />
+          <ListItemText primary={user.name} secondary="Lecturer Information" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary={`Email: ${user.email}`} />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary={`Age: ${user.age}`} />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary={`Gender: ${user.gender}`} />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary={`Phone: ${user.contact}`} />
         </ListItem>
       </List>
     </Dialog>
