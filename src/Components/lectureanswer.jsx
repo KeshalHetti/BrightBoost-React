@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore'
-import {db, auth} from '../config/firebase';
+import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { db, auth } from '../config/firebase';
 import BannerBackground from "../Assets/home-banner-background.png";
-import { Box, Card, CardContent, Typography, Button, Divider  } from '@mui/material';
+import { Box, Card, CardContent, Typography, Button, Divider, Snackbar, Alert } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,6 +16,7 @@ export default function LecturerReplyPage() {
   const [answer, setAnswer] = useState('');
   const [questions, setQuestions] = useState([]);
   const [emails, setEmails] = useState([]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -40,6 +41,7 @@ export default function LecturerReplyPage() {
         timetaken: timestampReplied - selectedQuestion.timestampasked,
         answer: answer
       });
+      setSnackbarOpen(true); // Open the Snackbar
     } catch (error) {
       console.error("Error updating document:", error);
     }
@@ -61,7 +63,7 @@ export default function LecturerReplyPage() {
           <CardContent>
             <Typography gutterBottom variant='h4' component='div'>Answer a Question</Typography>
 
-            <FormControl fullWidth>
+            <FormControl className='answerquestion'>
               <InputLabel>Subject</InputLabel>
               <Select value={subject} onChange={e => setSubject(e.target.value)}>
                 <MenuItem value="English">English</MenuItem>
@@ -71,7 +73,7 @@ export default function LecturerReplyPage() {
             </FormControl>
 
             {subject && (
-              <FormControl fullWidth>
+              <FormControl className='answerquestion'>
                 <InputLabel>Emails</InputLabel>
                 <Select value={selectedEmail} onChange={e => setSelectedEmail(e.target.value)}>
                   {emails.map(email => <MenuItem key={email} value={email}>{email}</MenuItem>)}
@@ -80,7 +82,7 @@ export default function LecturerReplyPage() {
             )}
 
             {selectedEmail && (
-              <FormControl fullWidth>
+              <FormControl className='answerquestion'>
                 <InputLabel>Questions</InputLabel>
                 <Select value={selectedQuestion.id} onChange={e => {
                   const question = questions.find(q => q.id === e.target.value);
@@ -92,23 +94,37 @@ export default function LecturerReplyPage() {
                 </Select>
               </FormControl>
             )}
-
-            {selectedQuestion.question && (
-              <TextField
-                fullWidth
-                multiline
-                rows={1}
-                label="Type your answer here"
-                variant="outlined"
-                value={answer}
-                onChange={e => setAnswer(e.target.value)}
-              />
-            )}
-            <Divider style={{ margin: '5px 0' }} />
-            <Button variant="contained" onClick={handleAnswerSubmit}>Submit Answer</Button>
+            <div className='answerquestion'>
+              {selectedQuestion.question && (
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={1}
+                  label="Type your answer here"
+                  variant="outlined"
+                  value={answer}
+                  onChange={e => setAnswer(e.target.value)}
+                />
+              )}
+            </div>
+            <div className='answerbutton'>
+              <Divider style={{ margin: '5px 0' }} />
+              <Button variant="contained" onClick={handleAnswerSubmit}>Submit Answer</Button>
+            </div>
           </CardContent>
         </Card>
       </div>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <Alert onClose={() => setSnackbarOpen(false)} severity="success">
+          Answer Successfully Submitted
+        </Alert>
+      </Snackbar>
     </div >
   );
 }

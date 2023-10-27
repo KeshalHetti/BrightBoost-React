@@ -1,4 +1,5 @@
 import * as React from 'react';
+import BannerBackground from "../Assets/home-banner-background.png";
 import { useState, useEffect } from 'react';
 import { db } from '../config/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -14,6 +15,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
 import { blue } from '@mui/material/colors';
+import { Box, Card, CardContent } from '@mui/material';
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = useState(false);
@@ -44,11 +46,31 @@ export default function SimpleDialogDemo() {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        View Profile
-      </Button>
-      <SimpleDialog user={user} open={open} onClose={handleClose} />
+    <div className="home-container">
+      <div className="home-banner-container">
+        <div className="home-bannerImage-container">
+          <img src={BannerBackground} alt="" />
+        </div>
+        <div className="home-text-section">
+          <h1 className="primary-heading">
+            BrightBoost Student Profile
+          </h1>
+        </div>
+      </div>
+      <div className='student-boxcontainer'>
+        <div className="student-grid">
+          <Box>
+            <Card className='student-card'>
+              <CardContent>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                  View Profile
+                </Button>
+                <SimpleDialog user={user} open={open} onClose={handleClose} />
+              </CardContent>
+            </Card>
+          </Box>
+        </div>
+      </div>
     </div>
   );
 }
