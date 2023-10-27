@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Radio from '@mui/material/Radio';
 import BannerBackground from "../Assets/home-banner-background.png";
 
-export default function BasicTable() {
+export default function LectureTimetable() {
   const [data, setData] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [editField, setEditField] = useState(null);

@@ -5,14 +5,14 @@ import { db } from '../config/firebase';
 import { Chart, ArcElement } from 'chart.js';
 import { collection, getDocs, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 
-const AdminAndResponseTimeCharts = () => {
+const AdminHome = () => {
     Chart.register(ArcElement);
 
     const [userData, setUserData] = useState([]);
-    const [responseTimeData, setResponseTimeData] = useState([]);
+    const [responseData, setResponseData] = useState([]);
     useEffect(() => {
         const q = query(
-            collection(db, "users"), 
+            collection(db, "users"),
             orderBy("logins", "desc"),
             limit(5)
         );
@@ -50,7 +50,7 @@ const AdminAndResponseTimeCharts = () => {
                 average: responseTimes[email].total / responseTimes[email].count
             })).sort((a, b) => a.average - b.average).slice(0, 5);
 
-            setResponseTimeData(averages);
+            setResponseData(averages);
         };
 
         fetchData();
@@ -65,9 +65,9 @@ const AdminAndResponseTimeCharts = () => {
     };
 
     const chartData = {
-        labels: responseTimeData.map(item => item.email),
+        labels: responseData.map(item => item.email),
         datasets: [{
-            data: responseTimeData.map(item => item.average),
+            data: responseData.map(item => item.average),
             backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
         }]
     };
@@ -108,12 +108,12 @@ const AdminAndResponseTimeCharts = () => {
                         Lecturers:
                     </Typography>
                     <List>
-                        {responseTimeData.map(item => (
+                        {responseData.map(item => (
                             <ListItem key={item.email}>
                                 <div style={{
                                     width: '20px',
                                     height: '20px',
-                                    backgroundColor: chartData.datasets[0].backgroundColor[responseTimeData.indexOf(item)],
+                                    backgroundColor: chartData.datasets[0].backgroundColor[responseData.indexOf(item)],
                                     marginRight: '10px',
                                     display: 'inline-block'
                                 }}>
@@ -128,4 +128,4 @@ const AdminAndResponseTimeCharts = () => {
     );
 };
 
-export default AdminAndResponseTimeCharts;
+export default AdminHome;

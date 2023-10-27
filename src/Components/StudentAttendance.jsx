@@ -45,7 +45,7 @@ export default function StudentAttendance() {
     fetchAttendance();
   }, []);
 
-  const handleAttendanceChange = async (userId, day) => {
+  const handleAttendance = async (userId, day) => {
     const attendanceRef = doc(db, 'attendance', userId);
 
     const currentAttendance = attendanceData[userId]?.[day] || false;
@@ -63,7 +63,7 @@ export default function StudentAttendance() {
         }
       }));
     } catch (err) {
-      console.error("Error updating attendance:", err);
+      console.error("Error! Updating attendance failed:", err);
     }
   };
 
@@ -88,7 +88,7 @@ export default function StudentAttendance() {
                 <TableCell align="center" key={day}>
                   <Checkbox
                     checked={attendanceData[user.id]?.[day] || false}
-                    onChange={() => handleAttendanceChange(user.id, day)}
+                    onChange={() => handleAttendance(user.id, day)}
                   />
                 </TableCell>
               ))}

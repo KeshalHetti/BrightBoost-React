@@ -20,7 +20,7 @@ export default function QuestionPage() {
   useEffect(() => {
     const fetchAnswers = async () => {
       if (!auth.currentUser) {
-        console.error("User not logged in.");
+        console.error("User isn't logged in.");
         return;
       }
       const userEmail = auth.currentUser.email;
@@ -33,7 +33,7 @@ export default function QuestionPage() {
 
   const handleQuestionSubmit = async () => {
     if (!auth.currentUser) {
-      console.error("User not logged in.");
+      console.error("User isn't logged in.");
       return;
     }
 
@@ -42,7 +42,7 @@ export default function QuestionPage() {
       const userSnapshot = await getDocs(query(collection(db, 'users'), where('email', '==', userEmail)));
 
       if (userSnapshot.empty) {
-        console.error(`No user data found for email: ${userEmail}`);
+        console.error(`Email not found in user data: ${userEmail}`);
         return;
       }
 
@@ -50,7 +50,7 @@ export default function QuestionPage() {
       const userData = userDoc.data();
 
       if (userData.role !== 'student') {
-        console.error('Only students can submit questions.');
+        console.error('Questions can only be submitted by students.');
         return;
       }
 
@@ -65,9 +65,9 @@ export default function QuestionPage() {
         timetaken: 0,
         subject: subject
       });
-      setSnackbarOpen(true); // Open the Snackbar
+      setSnackbarOpen(true);
     } catch (error) {
-      console.error("Error fetching user role:", error);
+      console.error("Error! Fetching user role failed:", error);
     }
   };
 

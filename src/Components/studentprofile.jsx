@@ -16,7 +16,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { blue } from '@mui/material/colors';
 import { Box, Card, CardContent } from '@mui/material';
 
-export default function SimpleDialogDemo() {
+export default function StudentProfile() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -64,7 +64,7 @@ export default function SimpleDialogDemo() {
                 <Button variant="outlined" onClick={handleClickOpen}>
                   View Profile
                 </Button>
-                <SimpleDialog user={user} open={open} onClose={handleClose} />
+                <ProfileStudent user={user} open={open} onClose={handleClose} />
               </CardContent>
             </Card>
           </Box>
@@ -74,7 +74,7 @@ export default function SimpleDialogDemo() {
   );
 }
 
-function SimpleDialog(props) {
+function ProfileStudent(props) {
   const { onClose, open, user } = props;
 
   const handleClose = () => {

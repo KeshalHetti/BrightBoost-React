@@ -41,7 +41,7 @@ const Login = () => {
                     logins: 1
                 });
             }
-            setSuccessMessage("Sign-in successful!");
+            setSuccessMessage("Sign-in Successful!");
             setErrorMessage("");
             navigate('/');
         } catch (err) {

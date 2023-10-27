@@ -1,4 +1,4 @@
-import  { React, useState, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import Logo from "../Assets/logo.png";
 import { HiOutlineBars3 } from 'react-icons/hi2';
 import { Box, Drawer, ListItem, ListItemButton, ListItemIcon, ListItemText, } from "@mui/material";
@@ -51,7 +51,7 @@ const Navbar = () => {
     const signout = async () => {
         try {
             await signOut(auth);
-            setSuccessMessage("Successfully Signed Out!");
+            setSuccessMessage("Signed Out Successfully!");
             setErrorMessage("");
             navigate('/signup');
         } catch (err) {
@@ -64,21 +64,21 @@ const Navbar = () => {
             try {
                 const userEmail = auth.currentUser.email;
                 const userSnapshot = await getDocs(query(collection(db, 'users'), where('email', '==', userEmail)));
-    
+
                 if (userSnapshot.empty) {
-                    console.error(`No user data found for email: ${userEmail}`);
+                    console.error(`Email not found in user data: ${userEmail}`);
                     return;
                 }
-    
+
                 const userDoc = userSnapshot.docs[0];
                 const userData = userDoc.data();
-    
+
                 if (userData.role) {
                     setUserRole(userData.role);
                 }
-                
+
             } catch (error) {
-                console.error("Error fetching user role:", error);
+                console.error("Error! Fetching user role failed:", error);
             }
         }
         handleAuth()
@@ -95,7 +95,7 @@ const Navbar = () => {
                 {auth.currentUser && userRole === "student" && <Link to="/studenthome">Student</Link>}
                 {auth.currentUser && userRole === "lecturer" && <Link to="/lecturehome">Lecture</Link>}
                 {auth.currentUser && userRole === "admin" && <Link to="/adminhome">Admin</Link>}
-                {auth.currentUser ? <Link onClick={signout}>Logout</Link> :<Link to='/signup'>Log In</Link>}
+                {auth.currentUser ? <Link onClick={signout}>Logout</Link> : <Link to='/signup'>Log In</Link>}
             </div>
 
             <div className='navbar-menu-container'>

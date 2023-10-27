@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function LecturerReplyPage() {
+export default function LecturerPage() {
   const [subject, setSubject] = useState('');
   const [selectedEmail, setSelectedEmail] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState({});
@@ -43,7 +43,7 @@ export default function LecturerReplyPage() {
       });
       setSnackbarOpen(true); // Open the Snackbar
     } catch (error) {
-      console.error("Error updating document:", error);
+      console.error("Error! Updating document failed:", error);
     }
   };
 
@@ -100,7 +100,7 @@ export default function LecturerReplyPage() {
                   fullWidth
                   multiline
                   rows={1}
-                  label="Type your answer here"
+                  label="Enter your answer"
                   variant="outlined"
                   value={answer}
                   onChange={e => setAnswer(e.target.value)}
