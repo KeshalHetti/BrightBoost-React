@@ -237,7 +237,7 @@ nav {
   flex-direction: column;
   margin: auto;
   margin: auto;
-  margin-top: 50px;
+  margin-top: -26px;
   width: 600px;
   background: #e6e6e6;
   padding-bottom: 30px;
@@ -354,6 +354,13 @@ nav {
   border-radius: 25px !important;
 }
 
+.lecturer-answer {
+  height: 200px;
+  padding: 15px 5px 15px 5px;
+  border-radius: 25px !important;
+  margin-top: 40px;
+}
+
 .login-boxcontainer {
   text-align: center;
   margin: 3.5rem 0rem;
@@ -369,4 +376,8 @@ nav {
 
 .answerbutton {
   padding-top: 30px !important;
+}
+
+.timetable {
+  margin-top: 80px !important;
 }

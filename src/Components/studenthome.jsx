@@ -56,19 +56,6 @@ const Home = () => {
                             </CardContent>
                         </Card>
                     </Box>
-
-                    <Box>
-                        <Card className='student-card'>
-                            <CardContent>
-                                <Typography gutterBottom variant='h5' component='div'>
-                                    Attendance
-                                </Typography>
-                                <CardActions>
-                                    <Button size="small">View Page</Button>
-                                </CardActions>
-                            </CardContent>
-                        </Card>
-                    </Box>
                 </div>
             </div>
         </div>
