@@ -16,7 +16,7 @@ const Home = () => {
                         Welcome to BrightBoost
                     </h1>
                     <p className="primary-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor accumsan ante eu accumsan.
+                        Bright Boost is an after-school program that provides tutoring for high school students
                     </p>
                     <div>
                         <Link to="/signup">
